@@ -2,7 +2,7 @@
 
 public class UserService
 {
-    public List<User> Users;
+    public List<User> Users = new List<User>();
 
     public void CreateNewUser(string username, string password)
     {
