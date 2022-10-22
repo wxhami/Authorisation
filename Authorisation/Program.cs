@@ -3,27 +3,68 @@ using Authorisation;
 
 Authorisator authorisator = new Authorisator();
 
-    Console.WriteLine("Choose action: 1 - authorisation, 2 - login, 3 - logout");
-string choice = Console.ReadLine();
-if (choice == "1")
+bool isAlive = true;
+
+while (isAlive)
 {
-    Console. WriteLine("Enter your login: ");
+    Console.WriteLine("\nChoose action: 1 - authorisation, 2 - login, 3 - logout, 4 - shut down");
+    string choice = Console.ReadLine();
+    Console.Clear();
+    try
+    {
+        switch (choice)
+        {
+            case "1":
+                Register();
+                break;
+            case "2":
+                Login();
+                break;
+            case "3":
+                Logout();
+                break;
+            case "4":
+                isAlive = false;
+            break;
+
+        }
+        
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine(e.Message);
+    }
+    
+}
+
+void Register()
+{
+    Console.Write("Enter your login: ");
     string login = Console.ReadLine();
-    Console.WriteLine("Enter your password: ");
+
+    Console.Write("Enter your password: ");
     string password = Console.ReadLine();
+
     authorisator.RegisterNewUser(login, password);
+
+    Console.WriteLine("success: new user added");
 }
 
-if (choice == "2")
+void Login()
 {
-    Console.WriteLine("Enter your login: ");
+    Console.Write("Enter your login: ");
     string login = Console.ReadLine();
-    Console.WriteLine("Enter your password");
+
+    Console.Write("Enter your password");
     string password = Console.ReadLine();
+
     authorisator.Login(login, password);
+
+    Console.WriteLine("success: user logged in");
 }
 
-if (choice == "3")
+void Logout()
 {
     authorisator.Logout();
+    Console.WriteLine("success: user logged out");
 }
